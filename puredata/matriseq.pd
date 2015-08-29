@@ -1,0 +1,7 @@
+#N canvas 1098 25 266 163 12;
+#X obj 56 16 samplePool;
+#X obj 56 38 seqNotes;
+#X obj 56 60 oscHandle;
+#X obj 56 82 samplePlayer;
+#X obj 56 104 metronome;
+#X obj 56 126 controls;

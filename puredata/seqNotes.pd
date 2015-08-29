@@ -1,0 +1,106 @@
+#N canvas 786 28 763 772 12;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array nId 32 float 3;
+#A 0 1 1 1 1 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 1 1 2
+1;
+#X coords 0 3 32 0 200 140 1 0 0;
+#X restore 48 -1907 graph;
+#N canvas 0 3 625 403 (subpatch) 0;
+#X array nPitch 32 float 3;
+#A 0 6.29 3.50408 10.5358 9.04407 4.03922 12.7342 10.0475 0.894119
+10.4638 16.1633 4.68 14.05 8.43979 4.67887 1.38333 6.41515 14.3442
+4.31964 10.1522 13.1125 8.86956 10.4165 13.4194 7.5971 9.20755 5.35254
+2.46275 14.9933 5.41765 1.14118 18.1467 3.10411;
+#X coords 0 16 32 0 200 140 1 0 0;
+#X restore 48 -1591 graph;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array nBeat 32 float 3;
+#A 0 0 1 1 2 4 4 4 4 5 5 6 7 7 8 8 8 8 9 9 10 10 11 11 10 12 11 13
+13 13 14 14 14;
+#X coords 0 16 32 0 200 140 1 0 0;
+#X restore 260 -1663 graph;
+#X obj 538 -1776 machinegun;
+#X obj 538 -1798 f;
+#X obj 556 -1820 r nbNotes;
+#X obj 538 -1815 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 570 -1732 tabread nBeat;
+#X obj 538 -1754 t f f;
+#X obj 570 -1710 ==;
+#X obj 538 -1842 t b f;
+#X obj 538 -1864 r playBeat;
+#X obj 538 -1688 spigot;
+#X obj 558 -1644 tabread nPitch;
+#X obj 612 -1578 tabread nId;
+#X obj 538 -1600 f;
+#X obj 556 -1622 + 1;
+#X obj 538 -1556 t f f;
+#X obj 538 -1617 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 538 -1534 5 0 0 0 - - -;
+#X obj 538 -1491 s playThis;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array nGain 32 float 3;
+#A 0 0.653846 0.615385 0.461538 0.5 0.423077 0.538462 0.307692 0.307692
+0.461538 0.346154 0.576923 0.384615 1 0.346154 0.384615 0.269231 0.692308
+0.423077 0.5 0.384615 0.192308 0.538462 0.461538 0.461538 0.230769
+0.153846 0.461538 0.461538 0.230769 0.384615 0.307692 0.576923;
+#X coords 0 16 32 0 200 140 1 0 0;
+#X restore 260 -1831 graph;
+#X obj 583 -1622 tabread nGain;
+#N canvas 0 3 625 403 (subpatch) 0;
+#X array nDur 32 float 3;
+#A 0 1.4 1.4 1.7 1 0.7 0.9 1.3 1.2 1.4 1 1.3 1.2 2.4 1.2 0.8 1.4 2.1
+2 1.5 1 1 1.2 1 2.2 1 2.2 0.9 0.8 1.6 1 1.3 1;
+#X coords 0 16 32 0 200 140 1 0 0;
+#X restore 48 -1749 graph;
+#X obj 538 -1513 pack f f f f f;
+#X obj 538 -1666 t b f f f f;
+#X obj 593 -1600 tabread nDur;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array pitchOffsets 3 float 3;
+#A 0 0 0 0;
+#X coords 0 16 3 0 200 140 1 0 0;
+#X restore 48 -1392 graph;
+#X obj 538 -1578 % 8;
+#X obj 538 -1277 tabwrite pitchOffsets;
+#X obj 538 -1387 loadbang;
+#X obj 538 -1343 machinegun;
+#X msg 538 -1299 0;
+#X obj 538 -1321 t b f;
+#X msg 538 -1365 3;
+#X connect 3 0 8 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 1;
+#X connect 6 0 4 0;
+#X connect 7 0 9 0;
+#X connect 8 0 12 0;
+#X connect 8 1 7 0;
+#X connect 9 0 12 1;
+#X connect 10 0 6 0;
+#X connect 10 1 9 1;
+#X connect 11 0 10 0;
+#X connect 12 0 25 0;
+#X connect 13 0 24 1;
+#X connect 14 0 24 4;
+#X connect 15 0 28 0;
+#X connect 16 0 15 1;
+#X connect 17 0 19 0;
+#X connect 17 1 16 0;
+#X connect 18 0 15 0;
+#X connect 19 0 24 0;
+#X connect 22 0 24 2;
+#X connect 24 0 20 0;
+#X connect 25 0 18 0;
+#X connect 25 1 13 0;
+#X connect 25 2 22 0;
+#X connect 25 3 26 0;
+#X connect 25 4 14 0;
+#X connect 26 0 24 3;
+#X connect 28 0 17 0;
+#X connect 30 0 34 0;
+#X connect 31 0 33 0;
+#X connect 32 0 29 0;
+#X connect 33 0 32 0;
+#X connect 33 1 29 1;
+#X connect 34 0 31 0;

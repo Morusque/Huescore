@@ -208,11 +208,11 @@ void requestClosenessLimit(int c) {
 }
 
 void requestDetectionW(int l) {
-  detectionW = max(l, 1);
+  detectionW = max(l, 8);
 }
 
 void requestDetectionH(int l) {
-  detectionH = max(l, 1);
+  detectionH = max(l, 8);
 }
 
 void processPicture() {

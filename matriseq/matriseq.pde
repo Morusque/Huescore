@@ -17,7 +17,7 @@ ArrayList<Float>   gainValues = new ArrayList<Float>();
 ArrayList<Float>  pitchValues = new ArrayList<Float>();
 ArrayList<Integer> beatValues = new ArrayList<Integer>();
 
-int cameraIndex=0;
+int cameraIndex=39;
 
 PImage background;
 int nbTypes = 3;
@@ -281,8 +281,6 @@ Token[] defineTokenIds(PImage im, PImage bg) {
     }
   }
   // set non background colors id to 0
-
-
   for (int x=0; x<im2.width; x++) {
     for (int y=0; y<im2.height; y++) {
       if (colorDiff(im2.get(x, y), bg2.get(x, y))>backgroundThreshold) {
@@ -516,5 +514,18 @@ float[] findGroups(float[] numbers, int nbGroups, int max) {
       }
     }
   }
+  float mostDistant = 0;
+  float maxDistance = 0;
+  for (float f=0; f<0x100; f++) {
+    float minDistance = 0x100;
+    for (int i=0; i<groupValues.length; i++) minDistance = min(minDistance, vrMax(f, groupValues[i], 0x100));
+    if (minDistance>maxDistance) {
+      maxDistance = minDistance;
+      mostDistant = f;
+    }
+  }
+  for (int i=0; i<groupValues.length; i++) groupValues[i] = (groupValues[i]-mostDistant+0x100)%0x100;
+  groupValues = sort(groupValues);
+  for (int i=0; i<groupValues.length; i++) groupValues[i] = (groupValues[i]+mostDistant)%0x100;
   return groupValues;
 }
